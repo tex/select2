@@ -456,9 +456,12 @@
             // cache the body so future lookups are cheap
             this.body = thunk(function() { return opts.element.closest("body"); });
 
-            if (opts.element.attr("class") !== undefined) {
-                this.container.addClass(opts.element.attr("class"));
-            }
+// Following code blows up Nitrogen's wf:q() because it copies the class
+// of existing input box.
+//
+//          if (opts.element.attr("class") !== undefined) {
+//              this.container.addClass(opts.element.attr("class"));
+//          }
 
             this.container.css(evaluate(opts.containerCss));
             this.container.addClass(evaluate(opts.containerCssClass));
